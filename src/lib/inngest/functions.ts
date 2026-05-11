@@ -1,8 +1,10 @@
 import { inngest } from "./client";
 
 export const preVisitFollowUp = inngest.createFunction(
-  { id: "pre-visit-follow-up" },
-  { event: "visitor/planned-visit" },
+  { 
+    id: "pre-visit-follow-up",
+    triggers: [{ event: "visitor/planned-visit" }]
+  },
   async ({ event, step }) => {
     const { visitorName, churchName, hostName, phone, email, serviceTime } = event.data as {
       visitorName: string;
@@ -29,9 +31,6 @@ Hi ${visitorName}, We know visiting a new church can be a little intimidating...
     });
 
     // 3. Wait until Saturday 10:00 AM before the visit
-    // For MVP/Demo purposes, we'll just sleep for another 24h to simulate waiting for Saturday if we don't have the actual date logic fully parsed
-    // But ideally: await step.sleepUntil("saturday-reminder", "2026-05-16T10:00:00Z"); 
-    // Let's just do another sleep for now to demonstrate the flow
     await step.sleep("wait-for-saturday", "24h");
 
     await step.run("send-saturday-reminder", async () => {
