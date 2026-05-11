@@ -7,7 +7,7 @@ export default async function IntegrationsPage() {
   const churchId = 'demo-id'; // In a real app, get from session
 
   let settings;
-  let logs;
+  let logs: any[] = [];
 
   try {
     const settingsResult = await db.select().from(chmsSettings).where(eq(chmsSettings.churchId, churchId));

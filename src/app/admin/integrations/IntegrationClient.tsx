@@ -12,13 +12,13 @@ export default function IntegrationClient({ initialSettings, logs }: { initialSe
       <div className="flex border-b border-gray-100">
         <button 
           onClick={() => setActiveTab('settings')}
-          className={`px-8 py-4 font-bold text-sm transition \${activeTab === 'settings' ? 'text-blue-900 border-b-2 border-blue-900' : 'text-gray-400 hover:text-gray-600'}\`}
+          className={`px-8 py-4 font-bold text-sm transition ${activeTab === 'settings' ? 'text-blue-900 border-b-2 border-blue-900' : 'text-gray-400 hover:text-gray-600'}`}
         >
           Connection Settings
         </button>
         <button 
           onClick={() => setActiveTab('logs')}
-          className={`px-8 py-4 font-bold text-sm transition \${activeTab === 'logs' ? 'text-blue-900 border-b-2 border-blue-900' : 'text-gray-400 hover:text-gray-600'}\`}
+          className={`px-8 py-4 font-bold text-sm transition ${activeTab === 'logs' ? 'text-blue-900 border-b-2 border-blue-900' : 'text-gray-400 hover:text-gray-600'}`}
         >
           Sync Logs
         </button>
@@ -32,14 +32,14 @@ export default function IntegrationClient({ initialSettings, logs }: { initialSe
               <div className="grid grid-cols-2 gap-4">
                 <button 
                   onClick={() => setProvider('pco')}
-                  className={`p-6 rounded-2xl border-2 transition text-left \${provider === 'pco' ? 'border-blue-900 bg-blue-50' : 'border-gray-100 hover:border-gray-200'}\`}
+                  className={`p-6 rounded-2xl border-2 transition text-left ${provider === 'pco' ? 'border-blue-900 bg-blue-50' : 'border-gray-100 hover:border-gray-200'}`}
                 >
                   <div className="font-bold text-lg mb-1">Planning Center</div>
                   <div className="text-xs text-gray-500 font-medium uppercase tracking-wider">OAuth2 / API Key</div>
                 </button>
                 <button 
                   onClick={() => setProvider('ccb')}
-                  className={`p-6 rounded-2xl border-2 transition text-left \${provider === 'ccb' ? 'border-blue-900 bg-blue-50' : 'border-gray-100 hover:border-gray-200'}\`}
+                  className={`p-6 rounded-2xl border-2 transition text-left ${provider === 'ccb' ? 'border-blue-900 bg-blue-50' : 'border-gray-100 hover:border-gray-200'}`}
                 >
                   <div className="font-bold text-lg mb-1">Church Community Builder</div>
                   <div className="text-xs text-gray-500 font-medium uppercase tracking-wider">API Key</div>
@@ -103,11 +103,11 @@ export default function IntegrationClient({ initialSettings, logs }: { initialSe
                   <tr key={log.id} className="text-sm">
                     <td className="py-4 capitalize font-medium">{log.entityType}</td>
                     <td className="py-4">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider \${
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                         log.status === 'success' ? 'bg-green-100 text-green-600' :
                         log.status === 'error' ? 'bg-red-100 text-red-600' :
                         'bg-orange-100 text-orange-600'
-                      }\`}>
+                      }`}>
                         {log.status.replace('_', ' ')}
                       </span>
                     </td>
