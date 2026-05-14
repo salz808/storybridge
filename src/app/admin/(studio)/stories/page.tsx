@@ -2,6 +2,7 @@ import StoryAdminClient from './StoryAdminClient';
 import { db } from '@/lib/db';
 import { stories } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { Reveal } from '@/components/premium/Reveal';
 
 export default async function StoryAdminPage() {
   // In a real app, we'd get the churchId from the session/auth
@@ -52,19 +53,15 @@ export default async function StoryAdminPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">StoryBox Dashboard</h1>
-          <p className="text-gray-500 text-lg">Review and manage life-change stories</p>
-        </div>
-        <div className="flex gap-4">
-          <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition">
-            Export Stories
-          </button>
-        </div>
-      </div>
-
+    <div className="p-8 md:p-12 max-w-7xl mx-auto">
+      <header className="mb-12 border-b border-brand-midnight/5 pb-8">
+        <Reveal delay={0.1}>
+          <h1 className="text-4xl font-serif font-bold text-brand-midnight mb-2">The StoryBox</h1>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-brand-slate font-light uppercase tracking-widest text-xs">Curating the Kingdom's testimonies</p>
+        </Reveal>
+      </header>
       <StoryAdminClient initialStories={initialStories} />
     </div>
   );

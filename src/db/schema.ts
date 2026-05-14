@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid, jsonb, boolean } from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, uuid, jsonb, boolean, integer } from 'drizzle-orm/pg-core';
 
 export const churches = pgTable('churches', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -34,9 +34,35 @@ export const visitors = pgTable('visitors', {
   lastName: text('last_name').notNull(),
   email: text('email').notNull(),
   phone: text('phone'),
+  zipCode: text('zip_code'),
+  source: text('source'), // 'organic', 'social', 'invite', etc.
   visitDate: text('visit_date'),
   kidsInfo: text('kids_info'),
   status: text('status').default('pending'), // pending, visited, etc.
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const prayerRequests = pgTable('prayer_requests', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  churchId: uuid('church_id').references(() => churches.id).notNull(),
+  firstName: text('first_name').notNull(),
+  lastName: text('last_name'),
+  email: text('email').notNull(),
+  phone: text('phone'),
+  request: text('request').notNull(),
+  aiSummary: text('ai_summary'),
+  matchedStoryId: uuid('matched_story_id').references(() => stories.id),
+  status: text('status').default('pending').notNull(), // 'pending' | 'prayed' | 'followed_up'
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const memberInvites = pgTable('member_invites', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  churchId: uuid('church_id').references(() => churches.id).notNull(),
+  memberId: text('member_id'), // can be null for anonymous or just tracking by name
+  memberName: text('member_name').notNull(),
+  storyId: uuid('story_id').references(() => stories.id).notNull(),
+  clicks: integer('clicks').default(0).notNull(), // Using text because I don't want to import integer from pg-core right now if it's not there, but wait, I should use integer.
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
@@ -76,5 +102,15 @@ export const syncLogs = pgTable('sync_logs', {
   status: text('status').notNull(), // 'success' | 'error' | 'manual_review'
   details: text('details'),
   provider: text('provider').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const personalizedVideos = pgTable('personalized_videos', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  churchId: uuid('church_id').references(() => churches.id).notNull(),
+  visitorId: uuid('visitor_id').references(() => visitors.id).notNull(),
+  videoUrl: text('video_url').notNull(),
+  thumbnailUrl: text('thumbnail_url'),
+  watchedAt: timestamp('watched_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });

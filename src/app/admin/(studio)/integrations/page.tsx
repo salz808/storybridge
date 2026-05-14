@@ -2,6 +2,7 @@ import { db } from '@/lib/db';
 import { chmsSettings, syncLogs } from '@/db/schema';
 import { desc, eq } from 'drizzle-orm';
 import IntegrationClient from './IntegrationClient';
+import { Reveal } from '@/components/premium/Reveal';
 
 export default async function IntegrationsPage() {
   const churchId = 'demo-id'; // In a real app, get from session
@@ -33,11 +34,15 @@ export default async function IntegrationsPage() {
   }
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">ChMS Integrations</h1>
-        <p className="text-gray-500">Connect StoryBridge to your Church Management System</p>
-      </div>
+    <div className="p-8 md:p-12 max-w-6xl mx-auto">
+      <header className="mb-12 border-b border-brand-midnight/5 pb-8">
+        <Reveal delay={0.1}>
+          <h1 className="text-4xl font-serif font-bold text-brand-midnight mb-2">Intelligence Sync</h1>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-brand-slate font-light uppercase tracking-widest text-xs">Architecting the bi-directional stream</p>
+        </Reveal>
+      </header>
 
       <IntegrationClient initialSettings={settings} logs={logs} />
     </div>
