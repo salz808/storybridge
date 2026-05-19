@@ -50,7 +50,7 @@ export default function SalesPage() {
               </PremiumButton>
             </div>
             <p className="mt-6 text-xs font-sans uppercase tracking-[0.2em] text-brand-gold font-bold">
-              Essential Growth Infrastructure | $400/mo
+              Essential Growth Infrastructure | $499/mo
             </p>
           </Reveal>
         </div>
@@ -162,7 +162,7 @@ export default function SalesPage() {
               Essential Growth Infrastructure
             </h2>
             <p className="text-xl text-brand-slate uppercase tracking-widest mt-8 font-bold">
-              $400 / Month
+              $499 / Month
             </p>
           </div>
         </Reveal>
@@ -170,7 +170,7 @@ export default function SalesPage() {
         <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-12">
           <FadeIn delay={0.2}>
             <div className="p-12 bg-white rounded-3xl shadow-2xl border border-brand-gold/10">
-              <h3 className="text-2xl font-serif mb-8 text-brand-midnight">The Professional Tier</h3>
+              <h3 className="text-2xl font-serif mb-8 text-brand-midnight">The Impact Tier</h3>
               <ul className="space-y-4 text-brand-slate mb-12">
                 <li className="flex gap-4">
                   <span className="text-brand-gold font-bold">✓</span> Full StoryBox Syndication

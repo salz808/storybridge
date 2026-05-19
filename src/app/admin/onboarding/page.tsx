@@ -20,10 +20,10 @@ export default function OnboardingWizard() {
     subdomain: '',
     logo: null,
     primaryColor: '#C5A059',
-    brandColorName: '',
-    themeName: '',
-    address: '',
-    mission: '',
+    brandColorName: 'Burnished Gold',
+    themeName: 'Aged Parchment',
+    address: '123 Grace Way, Atlanta, GA 30303',
+    mission: 'To build a bridge between our stories and the community.',
     chmsProvider: 'pco',
     senderName: '',
     serviceTimes: '10:00 AM',
@@ -53,6 +53,7 @@ export default function OnboardingWizard() {
       }, 1000);
     } else {
       setIsScraping(false);
+      alert(result.error || "Failed to import. Please try manual entry.");
     }
   };
 
@@ -145,6 +146,16 @@ export default function OnboardingWizard() {
                       </div>
 
                       <div className="space-y-6">
+                        <div>
+                          <label className="block text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">Church Name</label>
+                          <input 
+                            type="text" 
+                            placeholder="Grace Community Church"
+                            value={formData.name}
+                            className="w-full p-6 bg-brand-parchment border border-brand-midnight/5 rounded-2xl outline-none focus:ring-2 focus:ring-brand-gold/50 transition-all font-light"
+                            onChange={(e) => setStepData({ ...formData, name: e.target.value })}
+                          />
+                        </div>
                         <div>
                           <label className="block text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">Your Custom URL</label>
                           <div className="flex items-center group">
@@ -248,6 +259,7 @@ export default function OnboardingWizard() {
                         <input 
                           type="text" 
                           placeholder="e.g. Pastor David"
+                          value={formData.senderName}
                           className="w-full p-6 bg-brand-parchment border border-brand-midnight/5 rounded-2xl outline-none focus:ring-2 focus:ring-brand-gold/50 transition-all font-light"
                           onChange={(e) => setStepData({ ...formData, senderName: e.target.value })}
                         />
