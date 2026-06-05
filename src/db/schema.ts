@@ -114,3 +114,16 @@ export const personalizedVideos = pgTable('personalized_videos', {
   watchedAt: timestamp('watched_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
+
+export const nominations = pgTable('nominations', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  churchId: uuid('church_id').references(() => churches.id).notNull(),
+  nomineeName: text('nominee_name').notNull(),
+  nomineePhone: text('nominee_phone').notNull(),
+  leaderName: text('leader_name').notNull(),
+  context: text('context').notNull(),
+  category: text('category').notNull(),
+  status: text('status').default('pending').notNull(), // 'pending', 'invited', 'submitted', 'declined'
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
